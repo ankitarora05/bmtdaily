@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game in HTML5 Canvas and JavaScript - Ankit Arora</title>
+  <description>This code creates a simple Snake game using the HTML5 canvas element and JavaScript. You can control the snake's direction using the arrow keys. The goal is to eat the red food to grow the snake without colliding with the walls or itself. </description>
+  <style>
+    canvas {
+      border: 1px solid #000;
+      margin: 20px auto;
+      display: block;
+    }
+    .button-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <h2><center>Snake Game</center></h2>
+  <center><p>You can control the snake's direction using the arrow keys.</p>
+  <p>The goal is to eat the red food to grow the snake without colliding with the walls or itself.</p></center>
+  <div class="button-row"><button onclick="startGame()">Start</button>
+<button onclick="pauseGame()">Pause</button>
+<button onclick="stopGame()">Stop</button></div>
+  <canvas id="snakeCanvas" width="400" height="400"></canvas>
+  <center><p>Snake game using HTML5 canvas and JavaScript</p></center>
+  <center>Ankit Arora</center>
+  
+
+  <script>
+    const canvas = document.getElementById("snakeCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const boxSize = 20;
+    let snake = [{ x: 10, y: 10 }];
+    let food = { x: 15, y: 15 };
+    let direction = "right";
+    let gameInterval;
+
+    function draw() {
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw snake
+      ctx.fillStyle = "#00F";
+      snake.forEach(segment => {
+        ctx.fillRect(segment.x * boxSize, segment.y * boxSize, boxSize, boxSize);
+      });
+
+      // Draw food
+      ctx.fillStyle = "#F00";
+      ctx.fillRect(food.x * boxSize, food.y * boxSize, boxSize, boxSize);
+    }
+
+    function move() {
+      let newHead = { ...snake[0] };
+
+      switch (direction) {
+        case "up":
+          newHead.y--;
+          break;
+        case "down":
+          newHead.y++;
+          break;
+        case "left":
+          newHead.x--;
+          break;
+        case "right":
+          newHead.x++;
+          break;
+      }
+
+      // Check for collision with food
+      if (newHead.x === food.x && newHead.y === food.y) {
+        // Generate new food
+        food = {
+          x: Math.floor(Math.random() * (canvas.width / boxSize)),
+          y: Math.floor(Math.random() * (canvas.height / boxSize)),
+        };
+      } else {
+        // Remove the last segment of the snake if no food is eaten
+        snake.pop();
+      }
+
+      // Check for collision with walls or itself
+      if (
+        newHead.x < 0 ||
+        newHead.y < 0 ||
+        newHead.x >= canvas.width / boxSize ||
+        newHead.y >= canvas.height / boxSize ||
+        collision(newHead, snake)
+      ) {
+        // Game over
+        alert("Game over!");
+        window.location.reload();
+      } else {
+        // Move snake
+        snake.unshift(newHead);
+      }
+    }
+
+    function collision(head, array) {
+      // Check if the head collides with any segment of the snake
+      return array.some(segment => segment.x === head.x && segment.y === head.y);
+    }
+
+    function resetGame() {
+      snake = [{ x: 10, y: 10 }];
+      food = { x: 15, y: 15 };
+      direction = "right";
+      clearInterval(gameInterval);
+    }
+
+    function keyDownHandler(e) {
+      switch (e.key) {
+        case "ArrowUp":
+          direction = "up";
+          break;
+        case "ArrowDown":
+          direction = "down";
+          break;
+        case "ArrowLeft":
+          direction = "left";
+          break;
+        case "ArrowRight":
+          direction = "right";
+          break;
+      }
+    }
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    function startGame() {
+      if (!gameInterval) {
+        gameInterval = setInterval(function() {
+          move();
+          draw();
+        }, 100); // Adjust the speed of the game
+      }
+    }
+
+    function pauseGame() {
+      clearInterval(gameInterval);
+      gameInterval = null;
+    }
+
+    function stopGame() {
+      clearInterval(gameInterval);
+      resetGame();
+      draw();
+    }
+  </script>
+</body>
+</html>
