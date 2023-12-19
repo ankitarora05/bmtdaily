@@ -160,43 +160,8 @@
       draw();
     }
     function hitcounter(){
-    const StoreFactory=function( name, type ){/* this would usually be in a separate js file */
-        'use strict';
-        const engine = !type || type.toLowerCase() === 'local' ? localStorage : sessionStorage;
-
-        const set=function( data ){
-            engine.setItem( name, JSON.stringify( data ) );
-        };
-        const get=function(){
-            return exists( name ) ? JSON.parse( engine.getItem( name ) ) : false;
-        };
-        const remove=function(){
-            engine.removeItem( name );
-        };
-        const exists=function(){
-            return engine.getItem( name )==null ? false : true;
-        };
-        const create=function(){
-            if( !exists() ) set( arguments[0] || {} );
-        };
-        return Object.freeze({
-            set,
-            get,
-            exists,
-            create,
-            remove
-        });
+     
     }
-
-    let oStore = new StoreFactory( 'urls', 'sessionStorage' );
-        oStore.create();
-
-    let data=oStore.get();
-        data[ location.href ]=data.hasOwnProperty( location.href ) ? parseInt( data[ location.href ] ) + 1 : 1;
-        data.total=data.hasOwnProperty('total') ? parseInt( data.total ) + 1 : 1;
-
-    oStore.set( data );
-}
   document.addEventListener( 'DOMContentLoaded', hitcounter );
   </script>
 </body>
