@@ -1,5 +1,7 @@
 Experience the classic Snake Game brought to life with HTML5 and JavaScript! This engaging and nostalgic game challenges players to navigate a growing snake through a confined space, aiming to consume red apples and grow longer. The game features responsive controls using arrow keys to guide the snake in the desired direction.
 
+Play the snake game online https://symphonious-pithivier-ceca97.netlify.app/
+
 Key Features:
 
 Responsive Controls: Use the arrow keys to control the snake's movement – up, down, left, and right.
