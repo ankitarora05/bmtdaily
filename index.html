@@ -12,6 +12,7 @@
       background-color: #FF3CAC;
       background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
       background-attachment: fixed;
+      overflow-x: hidden;
     }
     html {
       font-family: 'Roboto', sans-serif;
@@ -155,6 +156,7 @@
       food = { x: 15, y: 15 };
       direction = "right";
       clearInterval(gameInterval);
+      document.body.style.overflow = 'auto';
     }
 
     function keyDownHandler(e) {
@@ -177,6 +179,7 @@
     document.addEventListener("keydown", keyDownHandler);
 
     function startGame() {
+      document.body.style.overflow = 'hidden';
       if (!gameInterval) {
         gameInterval = setInterval(function() {
           move();
@@ -194,9 +197,6 @@
       clearInterval(gameInterval);
       resetGame();
       draw();
-    }
-    function hitcounter(){
-     
     }
   document.addEventListener( 'DOMContentLoaded', hitcounter );
   </script>
