@@ -57,52 +57,11 @@
       text-decoration: none;
       font-size: 16px;
     }
-    @media only screen and (min-width : 320px) {
-      canvas {
-        width: 70%;
-        height: 50%;
-      }
-    }
-
-    /* Extra Small Devices, Phones */ 
-    @media only screen and (min-width : 480px) {
-      canvas {
-        width: 70%;
-        height: 50%;
-      }
-
-    }
-
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-      canvas {
-        width: 70%;
-        height: 50%;
-      }
-
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
-      canvas {
-        width: 70%;
-        height: 50%;
-      }
-
-    }
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
-      canvas {
-        width: 70%;
-        height: 50%;
-      }
-    }
   </style>
 </head>
 <body>
   <h2><center>Play Snake Game Online</center></h2>
-  <canvas id="snakeCanvas"></canvas>
+  <canvas id="snakeCanvas" width="600" height="400"></canvas>
   <div class="button-row"><button onclick="startGame()" autofocus>Start</button>
 <button onclick="pauseGame()">Pause</button>
 <button onclick="stopGame()">Stop</button></div>
