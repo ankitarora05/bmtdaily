@@ -7,10 +7,11 @@
   <meta name="description" content="This code creates a simple Snake game using the HTML5 canvas element and JavaScript. You can control the snake's direction using the arrow keys. The goal is to eat the red food to grow the snake without colliding with the walls or itself. Ankit Arora">
   <style>
     body {
-      height: 100%;
+      width: 100%;
       color: #ffffff;
       background-color: #FF3CAC;
       background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+      background-attachment: fixed;
     }
     html {
       font-family: 'Roboto', sans-serif;
@@ -57,30 +58,40 @@
       font-size: 16px;
     }
     @media only screen and (min-width : 320px) {
+      canvas {
         width: 100%;
+      }
     }
 
     /* Extra Small Devices, Phones */ 
     @media only screen and (min-width : 480px) {
-      width: 100%;
+      canvas {
+        width: 100%;
+      }
 
     }
 
     /* Small Devices, Tablets */
     @media only screen and (min-width : 768px) {
-      width: 100%;
+      canvas {
+        width: 100%;
+      }
 
     }
 
     /* Medium Devices, Desktops */
     @media only screen and (min-width : 992px) {
-      width: 100%;
+      canvas {
+        width: 100%;
+      }
 
     }
 
     /* Large Devices, Wide Screens */
     @media only screen and (min-width : 1200px) {
-      width: 100%;
+      canvas {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -100,6 +111,8 @@
   <script>
     const canvas = document.getElementById("snakeCanvas");
     const ctx = canvas.getContext("2d");
+    var heightRatio = 1.5;
+    canvas.height = canvas.width * heightRatio;
 
     const boxSize = 20;
     let snake = [{ x: 10, y: 10 }];
