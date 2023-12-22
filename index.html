@@ -13,9 +13,6 @@
       background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     }
     html {
-      Width: 100%;
-      height: 100%;
-      overflow: hidden;
       font-family: 'Roboto', sans-serif;
     }
     canvas {
@@ -59,12 +56,37 @@
       text-decoration: none;
       font-size: 16px;
     }
-    
+    @media only screen and (min-width : 320px) {
+        width: 100%;
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+      width: 100%;
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+      width: 100%;
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+      width: 100%;
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+      width: 100%;
+    }
   </style>
 </head>
 <body>
   <h2><center>Play Snake Game Online</center></h2>
-  <canvas id="snakeCanvas" width="600" height="400"></canvas>
+  <canvas id="snakeCanvas"></canvas>
   <div class="button-row"><button onclick="startGame()" autofocus>Start</button>
 <button onclick="pauseGame()">Pause</button>
 <button onclick="stopGame()">Stop</button></div>
