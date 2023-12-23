@@ -185,6 +185,7 @@
     document.addEventListener("keydown", keyDownHandler);
 
     function startGame() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
       document.body.style.overflow = 'hidden';
       if (!gameInterval) {
         gameInterval = setInterval(function() {
