@@ -79,7 +79,7 @@
     <a href="https://medium.com/@05.ankitarora" target="_blank">Medium</a>
   <a href="https://www.linkedin.com/in/ankit-arora-86a7b237/" target="_blank">LinkedIn</a>
   </div>
-  <div class="footer-label">Bubble Media Technology © <span id="year"></span></div>
+  <div class="footer-label">bmtdaily - Bubble Media Technology © <span id="year"></span></div>
   <script>
     document.getElementById("year").innerHTML = new Date().getFullYear();
     const canvas = document.getElementById("snakeCanvas");
@@ -187,8 +187,8 @@
 
     function startGame() {
       window.scrollTo({top: 0, behavior: 'smooth'});
-      document.body.style.overflow = 'hidden';
       if (!gameInterval) {
+        document.body.style.overflow = 'hidden';
         gameInterval = setInterval(function() {
           move();
           draw();
