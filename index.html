@@ -63,7 +63,9 @@
       font-size: 16px;
     }
     .footer-label {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       margin: 10px 0;
     }
@@ -113,6 +115,14 @@
         column-gap: 10px;
         font-size: 25px;
     }
+    .support-bmtdaily-image {
+        width: 140px;
+    }
+    .bmtdaily-icon-image {
+        width: 20px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
   </style>
 </head>
 <body>
@@ -137,8 +147,14 @@
     <a href="https://medium.com/@05.ankitarora" target="_blank">Medium</a>
   <a href="https://www.linkedin.com/in/ankit-arora-86a7b237/" target="_blank">LinkedIn</a>
   </div>
-  <div class="footer-label">Contact: bubblemediatechnology@gmail.com </div>
-  <div class="footer-label">Bubble Media Technology © <span id="year"></span></div>
+  <div class="footer-label">
+    <span><img class="support-bmtdaily-image" src="https://raw.githubusercontent.com/ankitarora05/snakegame/main/support.png" alt="support bmtdaily" /></span>
+  </div>
+  <div class="footer-label">
+    <span>Support BMTDaily</span>
+  </div>
+  <div class="footer-label"><span>Contact: bubblemediatechnology@gmail.com</span> </div>
+  <div class="footer-label"><span><img class="bmtdaily-icon-image" src="https://raw.githubusercontent.com/ankitarora05/snakegame/main/Icon-App-60x60%403x.png" alt="Bubble Media Technology" /></span> <span>Bubble Media Technology © <span id="year"></span></span></div>
   <script>
     document.getElementById("year").innerHTML = new Date().getFullYear();
     const canvas = document.getElementById("snakeCanvas");
