@@ -271,6 +271,60 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .bmt-movie-scroll-container {
+                background-color: #3434;
+                overflow: auto;
+                white-space: nowrap;
+                padding: 10px;
+                border-radius: 8px;
+                margin: 40px 0;
+                height: 700px;
+                
+            }
+            .bmt-movie-scroll-wrapper {
+                position: relative;
+            }
+            span.btm-movie-scroll-title {
+                position: absolute;
+                top: 100%;
+                font-size: 16px;
+                font-weight: bold;
+                left: 19px;
+                white-space: initial;
+                line-height: 24px;
+            }
+            span.btm-movie-scroll-release {
+                position: absolute;
+                bottom: -60px;
+                font-size: 16px;
+                font-weight: bold;
+                left: 19px;
+            }
+            .bmt-movie-scroll-container img {
+                max-width: 300px;
+                max-height: 400px;
+                min-width: 300px;
+                min-height: 400px;
+                width: auto;
+                height: auto;
+                margin: 10px 20px;
+                box-shadow: rgba(85, 0, 255, 0.3) 0px 0px 0px 3px;
+                border-radius: 12px;
+            }
+            .bmt-movie-scroll-image-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .bmt-movie-scroll-image-wrapper img {
+                padding: 10px;
+                max-height: 100%;
+				max-width: 100%;
+            }
+
 			/*Media Queries*/
 			@media (max-width: 320px) {
 				/* smartphones, iPhone, portrait 480x320 phones */
@@ -386,6 +440,18 @@
 				<div class="btm-daily-video-container">
                     
                 </div>
+			</div>
+		</div>
+		<hr />
+        <div class="btmdaily-tech-blog">
+            <div class="btmdaily-tech-blog-header">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff7300" d="M448 32H361.9l-1 1-127 127h92.1l1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128V96c0-15.1-5.3-29.1-14-40l-104 104H512zM294.1 32H201.9l-1 1L73.9 160h92.1l1-1 127-127zM64 32C28.7 32 0 60.7 0 96v64H6.1l1-1 127-127H64zM512 192H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192z"/></svg>
+                </div>
+                <div>BMT Daily Entertainment: Upcoming Cinematic Delights in Your Area</div>
+            </div>
+            <div class="bmt-daily-movie-container">
+				
 			</div>
 		</div>
 		<hr />
@@ -623,8 +689,15 @@
 					collision(newHead, snake)
 				) {
 					// Game over
+                    pauseGame();
+                    stopGame();
 					alert("Game over!");
-					window.location.reload();
+                    window.removeEventListener("keydown", function(e) {
+                    // space, page up, page down and arrow keys:
+                    if([32, 33, 34, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                        e.preventDefault();
+                    }
+                }, false);
 				} else {
 					// Move snake
 					snake.unshift(newHead);
@@ -643,7 +716,6 @@
 				food = { x: 15, y: 15 };
 				direction = "right";
 				clearInterval(gameInterval);
-				document.body.style.overflow = "auto";
 			}
 
 			function keyDownHandler(e) {
@@ -667,8 +739,14 @@
 
 			function startGame() {
 				window.scrollTo({ top: 0, behavior: "smooth" });
+                window.addEventListener("keydown", function(e) {
+                    // space, page up, page down and arrow keys:
+                    if([32, 33, 34, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                        e.preventDefault();
+                    }
+                }, false);
 				if (!gameInterval) {
-					document.body.style.overflow = "hidden";
+					
 					gameInterval = setInterval(function () {
 						move();
 						draw();
@@ -885,6 +963,41 @@
     })
 }
 fetchAndSetVideos();
+</script>
+<script async>
+    async function fetchLocation() {
+				const response = await fetch("https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc");
+				const location = await response.json();
+				return location;
+			}
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTg4YTdkYTJlNmI1ODlkZjdiOTMxZjJlODRiM2U4ZCIsInN1YiI6IjY1OGE2YmVhNjhiNzY2NjhmYjJkNTI2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHyPp_R-LlB-vPnv5P2FJiofzqOHfZ00STejIvTOTUg'
+  }
+};
+
+fetchLocation().then((data)=>{
+    let region = data.country_code2;
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?page=1&region=${region}`, options)
+  .then(response => response.json())
+  .then((response) => {
+    let moviesContainer = document.querySelector(
+						".bmt-daily-movie-container"
+					);
+    let html = ``;
+    response.results.forEach((item)=>{
+        if(item.poster_path || item.backdrop_path) {
+        html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${item.title}<br/><span>${item.overview}</span><br/><span>Popularity: ${ item.popularity}</span><br/><span>Lanuage: ${ item.original_language}</span><br/><span>Releasing: ${ item.release_date.split("-").reverse().join("-")}</span></span><img src="https://image.tmdb.org/t/p/original/${item.poster_path || item.backdrop_path}" alt="${item.original_title}"></span>`;
+        }
+    });
+    moviesContainer.innerHTML = `<div class="bmt-movie-scroll-container">${html}</div>`;
+    })
+  .catch(err => console.error(err));
+})
+
+
 </script>
 	</body>
 </html>
