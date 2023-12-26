@@ -938,7 +938,7 @@
     function fetchAndSetVideos() {
 
     fetchLocalTrendingVideo().then(async data=>{
-        let region = data.country_code2;
+        let region = data.country_code2 || "IN";
         let videoContainer = document.querySelector(
 						".btm-daily-video-container"
 					);
@@ -987,7 +987,7 @@ const options = {
 };
 
 fetchLocation().then((data)=>{
-    let region = data.country_code2;
+    let region = data.country_code2 || "IN";
     fetch(`https://api.themoviedb.org/3/movie/upcoming?page=1&region=${region}`, options)
   .then(response => response.json())
   .then((response) => {
@@ -1021,7 +1021,7 @@ const options2 = {
 };
 
 fetchLocation().then((data)=>{
-    let region = data.country_code2;
+    let region = data.country_code2 || "IN";
     fetch(`https://api.themoviedb.org/3/movie/now_playing?page=1&region=${region}`, options2)
   .then(response => response.json())
   .then((response) => {
