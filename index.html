@@ -278,7 +278,7 @@
                 white-space: nowrap;
                 padding: 10px;
                 border-radius: 8px;
-                margin: 40px 0;
+                margin: 10px 0;
                 height: 700px;
                 
             }
@@ -323,6 +323,15 @@
                 padding: 10px;
                 max-height: 100%;
 				max-width: 100%;
+            }
+
+            .movies-section-divider {
+                margin: 20px 0;
+                font-size: 18px;
+                justify-content: flex-start;
+                align-items: center;
+                column-gap: 10px;
+                display: flex;
             }
 
 			/*Media Queries*/
@@ -448,11 +457,10 @@
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff7300" d="M448 32H361.9l-1 1-127 127h92.1l1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128V96c0-15.1-5.3-29.1-14-40l-104 104H512zM294.1 32H201.9l-1 1L73.9 160h92.1l1-1 127-127zM64 32C28.7 32 0 60.7 0 96v64H6.1l1-1 127-127H64zM512 192H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192z"/></svg>
                 </div>
-                <div>BMT Daily Entertainment: Upcoming Cinematic Delights in Your Area</div>
+                <div>BMT Daily Entertainment: Cinematic Delights in Your Area</div>
             </div>
-            <div class="bmt-daily-movie-container">
-				
-			</div>
+            <div class="bmt-daily-movie-container-now-playing"></div>
+            <div class="bmt-daily-movie-container"></div>
 		</div>
 		<hr />
 		<div class="btmdaily-tech-blog">
@@ -987,17 +995,48 @@ fetchLocation().then((data)=>{
 						".bmt-daily-movie-container"
 					);
     let html = ``;
+    console.log(response);
     response.results.forEach((item)=>{
-        if(item.poster_path || item.backdrop_path) {
-        html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${item.title}<br/><span>${item.overview}</span><br/><span>Popularity: ${ item.popularity}</span><br/><span>Lanuage: ${ item.original_language}</span><br/><span>Releasing: ${ item.release_date.split("-").reverse().join("-")}</span></span><img src="https://image.tmdb.org/t/p/original/${item.poster_path || item.backdrop_path}" alt="${item.original_title}"></span>`;
-        }
+        html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title" style="text-decoration: underline">${item.title}<br/><span>${item.overview}</span><br/><span>Popularity: ${ item.popularity}</span><br/><span>Lanuage: ${ item.original_language}</span><br/><span>Releasing: ${ item.release_date.split("-").reverse().join("-")}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${item.poster_path || item.backdrop_path}" alt="${item.original_title}"></span>`;
     });
-    moviesContainer.innerHTML = `<div class="bmt-movie-scroll-container">${html}</div>`;
+    moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Movies that are being released soon near you</div><div class="bmt-movie-scroll-container">${html}</div>`;
     })
   .catch(err => console.error(err));
 })
+</script>
 
 
+<script async>
+    async function fetchLocation() {
+				const response = await fetch("https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc");
+				const location = await response.json();
+				return location;
+			}
+const options2 = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTg4YTdkYTJlNmI1ODlkZjdiOTMxZjJlODRiM2U4ZCIsInN1YiI6IjY1OGE2YmVhNjhiNzY2NjhmYjJkNTI2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHyPp_R-LlB-vPnv5P2FJiofzqOHfZ00STejIvTOTUg'
+  }
+};
+
+fetchLocation().then((data)=>{
+    let region = data.country_code2;
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?page=1&region=${region}`, options2)
+  .then(response => response.json())
+  .then((response) => {
+    let moviesContainer = document.querySelector(
+						".bmt-daily-movie-container-now-playing"
+					);
+    let html = ``;
+    console.log(response);
+    response.results.forEach((item)=>{
+        html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${item.title}<br/><span>${item.overview}</span><br/><span>Popularity: ${ item.popularity}</span><br/><span>Lanuage: ${ item.original_language}</span><br/><span>Releasing: ${ item.release_date.split("-").reverse().join("-")}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${item.poster_path || item.backdrop_path}" alt="${item.original_title}"></span>`;
+    });
+    moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Movies that are currently in theatres near you</div><div class="bmt-movie-scroll-container">${html}</div>`;
+    })
+  .catch(err => console.error(err));
+})
 </script>
 	</body>
 </html>
