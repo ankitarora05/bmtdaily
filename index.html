@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Bubble Media Technology - Daily</title>
+		<title>BMT Daily - Bubble Media Technology</title>
 		<link
 			rel="icon"
 			type="image/x-icon"
@@ -11,8 +11,7 @@
 		/>
 		<meta
 			name="keywords"
-			content="bmt daily, bmtdaily, bubble, bubble media, bubble media technology, daily bubble media, media bubble daily, news daily, digital news, 
-    news media daily, India, media daily news, daily news, Social media news sharing, Digital daily news publishing, Social media technology, Content sharing platforms, Online news distribution, bubble technology, Social media news trends, China, Tech Blog, Digital journalism tools, Nigeria, Social media news aggregator, bubble media, United Kingdom, Daily news updates online, Japan, News sharing technology,Technology Blog, Social media content distribution, United States, Digital news platform, Daily news publishing websites, User-generated content , Social media news apps, Content sharing innovations, Mexicom Online news dissemination, technology bubble, Digital media trends, Social media news feeds, Indonesia, Viral content, Technology Trends, Russia, News sharing on social networks, Decoding the Tech Language, A Chronicle of Digital Progress, Social media news discovery, internet, Digital news distribution platforms, Brazil, Content sharing strategies, Social media news algorithms, Daily news updates on social media, Technology in news publishing, Social media journalism, Digital storytelling platforms, News sharing apps, Social media content curation, Daily news in the digital age."
+			content="bmt daily, bmtdaily, bubble, bubble media, bubble media technology, BMT Daily Loop Trending Videos, daily bubble media, BMT Daily Loop, media bubble daily, news daily, digital news, Daily Loop, news media daily, India, media daily news, daily news, Social media news sharing, Digital daily news publishing, Social media technology, BMT Daily Facts Every Day ,Content sharing platforms, Online news distribution, bubble technology, Live Weather Updates Local, Social media news trends, Daily Loop Video, Facts Every Day, China, Tech Blog, Digital journalism tools, Nigeria, Social media news aggregator, bubble media, United Kingdom, BMT Daily Memes: Daily Dose of Laughter, Daily news updates online, Japan, News sharing technology, Local Live Weather Updates, Technology Blog, Social media content distribution, United States, Digital news platform, Daily news publishing websites, User-generated content , Daily Dose of Laughter, Daily Memes, BMT Daily: Live Weather Updates for Your Locale, Social media news apps, Live Weather, Content sharing innovations, Mexicom Online news dissemination, technology bubble, Digital media trends, Social media news feeds, Indonesia, Viral content, Technology Trends, Russia, Live Weather Updates, News sharing on social networks, Decoding the Tech Language, A Chronicle of Digital Progress, Social media news discovery, internet, Digital news distribution platforms, Brazil, Content sharing strategies, Social media news algorithms, Daily news updates on social media, Technology in news publishing, Social media journalism, Digital storytelling platforms, News sharing apps, Social media content curation, Daily news in the digital age."
 		/>
 		<meta
 			name="description"
@@ -131,13 +130,30 @@
 				color: #244f62;
 				font-size: 15px;
 			}
-			.bmt-website-title h2 {
+			.bmt-website-title h3 {
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				column-gap: 10px;
-				font-size: 25px;
+				font-size: 18px;
 			}
+            .bmt-daily-header {
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                justify-content: center;
+                margin: 10px 0;
+            }
+
+            .bmt-daily-logo img {
+                width: 50px;
+                border-radius: 50%;
+            }
+            
+            .bmt-daily-text {
+                font-size: 25px;
+                font-weight: bold;
+            }
 			.support-bmtdaily-image {
 				width: 140px;
 			}
@@ -304,8 +320,15 @@
 		</style>
 	</head>
 	<body>
+        <div class="bmt-daily-header">
+            <div class="bmt-daily-logo"><img
+                src="https://raw.githubusercontent.com/ankitarora05/snakegame/main/Icon-App-60x60%403x.png"
+                alt="Bubble Media Technology"
+        /></div>
+            <div class="bmt-daily-text">BMT Daily</div>
+        </div>
 		<div class="bmt-website-title">
-			<h2>
+			<h3>
 				<div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +346,7 @@
 				<div>
 					Beyond Syntax: The Art & Science of Building Internet Software
 				</div>
-			</h2>
+			</h3>
 		</div>
 		<!-- <canvas id="snakeCanvas" width="800" height="500"></canvas> -->
 		<div id="canvas-container"></div>
@@ -752,9 +775,9 @@
 		</script>
 		<script async>
 			async function fetchMemes() {
-				const response = await fetch("https://api.imgflip.com/get_memes");
+				const response = await fetch("https://api.humorapi.com/memes/random?api-key=ea6f7ea2ad1e4dc69879674a279adf29");
 				const memes = await response.json();
-				return memes.data.memes;
+				return memes;
 			}
 
 			function generateRandomNumber(min, max) {
@@ -763,14 +786,13 @@
 
 			function fetchAndSetMemes() {
 				fetchMemes().then((data) => {
-					let num = generateRandomNumber(0, data.length - 1);
 					let factContainer = document.querySelector(
 						".btm-daily-memes-container"
 					);
 					let html = `
                     <div class="bmt-daily-memes-container">
-                        <div class="bmt-daily-memes-title">${data[num].name}</div>
-                        <div class="bmt-daily-memes-image"><img src="${data[num].url}" alt="bmt daily memes" /></div>
+                        <div class="bmt-daily-memes-title">${data.description}</div>
+                        <div class="bmt-daily-memes-image"><img src="${data.url}" alt="bmt daily memes" /></div>
                         <div class="bmt-daily-memes-refresh"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg></div>
                     </div>
                 `;
