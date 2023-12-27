@@ -24,7 +24,7 @@
 		/>
 		<meta
 			name="keywords"
-			content="bmt daily, bmtdaily, bubble, bubble media, bubble media technology, BMT Daily Loop Trending Videos, daily bubble media, BMT Daily Loop, media bubble daily, news daily, digital news, Daily Loop, news media daily, India, media daily news, daily news, Social media news sharing, Digital daily news publishing, Social media technology, BMT Daily Facts Every Day ,Content sharing platforms, Online news distribution, bubble technology, Live Weather Updates Local, Social media news trends, Daily Loop Video, Facts Every Day, China, Tech Blog, Digital journalism tools, Nigeria, Social media news aggregator, bubble media, United Kingdom, BMT Daily Memes: Daily Dose of Laughter, Daily news updates online, Japan, News sharing technology, Local Live Weather Updates, Technology Blog, Social media content distribution, United States, Digital news platform, Daily news publishing websites, User-generated content , Daily Dose of Laughter, Daily Memes, BMT Daily: Live Weather Updates for Your Locale, Social media news apps, Live Weather, Content sharing innovations, Mexicom Online news dissemination, technology bubble, Digital media trends, Social media news feeds, Indonesia, Viral content, Technology Trends, Russia, Live Weather Updates, News sharing on social networks, Decoding the Tech Language, A Chronicle of Digital Progress, Social media news discovery, internet, Digital news distribution platforms, Brazil, Content sharing strategies, Social media news algorithms, Daily news updates on social media, Technology in news publishing, Social media journalism, Digital storytelling platforms, News sharing apps, Social media content curation, Daily news in the digital age."
+			content="bmt daily, bmtdaily, bubble, bubble media, bubble media technology, BMT Daily Loop Trending Videos, daily bubble media, BMT Daily Loop, media bubble daily, news daily, digital news, Daily Loop, news media daily, India, media daily news, daily news, Social media news sharing, Digital daily news publishing, Social media technology, BMT Daily Facts Every Day ,New Music Video,Content sharing platforms, Online news distribution, bubble technology, Live Weather Updates Local, Social media news trends, Daily Loop Video, Facts Every Day, China, Tech Blog, Digital journalism tools, Nigeria, Social media news aggregator, bubble media, United Kingdom, BMT Daily Memes: Daily Dose of Laughter,Daily New Music,  Daily news updates online, Japan, News sharing technology, Local Live Weather Updates, Technology Blog, Social media content distribution, United States, Digital news platform, Daily news publishing websites, User-generated content , Daily Dose of Laughter, Daily Memes, BMT Daily: Live Weather Updates for Your Locale, Social media news apps, Live Weather, Content sharing innovations, Mexicom Online news dissemination, technology bubble, Digital media trends, New Music Everyday, Listen to Music Video,Social media news feeds, Indonesia, Viral content, Technology Trends, Russia, Live Weather Updates, News sharing on social networks, Decoding the Tech Language, Watch music video, A Chronicle of Digital Progress, Social media news discovery, internet, Digital news distribution platforms, Brazil, Content sharing strategies, Social media news algorithms, Daily news updates on social media, Technology in news publishing, Social media journalism, Digital storytelling platforms, News sharing apps, Social media content curation, Daily news in the digital age."
 		/>
 		<meta
 			name="description"
@@ -219,6 +219,7 @@
 				text-align: right;
 				padding: 10px;
 			}
+			
 			.bmt-daily-memes-container {
 				display: flex;
 				justify-content: center;
@@ -281,6 +282,13 @@
 				height: 100%;
 			}
 			.bmt-daily-video-refresh {
+				position: absolute;
+				bottom: -47px;
+				width: 100%;
+				text-align: center;
+			}
+
+			.bmt-daily-music-refresh {
 				position: absolute;
 				bottom: -47px;
 				width: 100%;
@@ -474,6 +482,18 @@
 				the walls or itself.
 			</p>
 		</center>
+		<hr/>
+		<div class="btmdaily-tech-blog">
+			<div class="btmdaily-tech-blog-header">
+				<div>
+					<svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff0059" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V200 128c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/></svg>
+				</div>
+				<div>BMT Daily Music: Discover and Play New Videos Every Day!!</div>
+			</div>
+			<div class="youtube-video-container">
+				<div class="btm-daily-music-container"></div>
+			</div>
+		</div>
 		<hr />
 		<div class="btmdaily-tech-blog">
 			<div class="btmdaily-tech-blog-header">
@@ -697,6 +717,8 @@
 				'activities': 'https://www.googleapis.com/youtube/v3/activities',
 				'commentThreads.list': 'https://www.googleapis.com/youtube/v3/commentThreads',
 			};
+
+			window['musicTabID'] = [112024, 112025, 112026, 112027, 112028, 112029, 112030, 112031, 112032, 112034, 112035, 112037, 112038, 112040, 112041, 112042, 112043, 112044, 112045, 112047, 112049, 112051, 112055, 112057, 112058,112059, 112064, 112067, 112068, 112069, 112077, 112078, 112079, 112080, 112082, 112083, 112086, 112087, 112090, 112092,112093, 112094, 112096, 112099, 112100, 112101, 112102, 112103, 112104, 112105, 112107, 112108, 112109, 112110, 112112, 112113, 112114, 112115, 112117, 112118,112119,112120, 112121, 112123];
 
 			if ("serviceWorker" in navigator) {
 			  window.addEventListener("load", function() {
@@ -1399,5 +1421,57 @@
 	}
 	fetchAndSetChannelVideos();
 </script>
+	<script async>
+		function generateRandomNumber(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		}
+		async function fetchMusicVideos() {
+			let index = generateRandomNumber(0, window.musicTabID.length - 1);
+			let response = await fetch(`https://theaudiodb.com/api/v1/json/2/mvid.php?i=${window.musicTabID[index]}`)
+			let musicVideos = await response.json();
+			return musicVideos;
+		}
+
+		function youtube_parser(url){
+			var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+			var match = url.match(regExp);
+			return (match&&match[7].length==11)? match[7] : false;
+		}
+		
+
+		async function fetchAndSetDailyMusicVideo() {
+			fetchMusicVideos().then(data=>{
+				let musicIndex = generateRandomNumber(0, data.mvids.length-1);
+				let musicVideoContainer = document.querySelector('.btm-daily-music-container');
+				let html = `
+			<div class="bmt-daily-popular-youtube-category">${data.mvids[musicIndex].strTrack + " | " + data.mvids[musicIndex].strArtist}</div>
+
+
+			<iframe
+				width="460"
+				height="315"
+				src="https://www.youtube.com/embed/${youtube_parser(data.mvids[musicIndex].strMusicVid)}"
+				frameborder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen
+			></iframe>
+
+			<div class="bmt-daily-music-refresh"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg></div>
+`;
+
+musicVideoContainer.innerHTML = html;
+
+			let refreshButton = document.querySelector(
+				".bmt-daily-music-refresh"
+			);
+			refreshButton.addEventListener("click", () => {
+				fetchAndSetDailyMusicVideo();
+			});
+
+
+			})
+		}
+		fetchAndSetDailyMusicVideo();
+	</script>
 	</body>
 </html>
