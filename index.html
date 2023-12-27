@@ -1784,7 +1784,7 @@
 
 			async function fetchAndSetDailyMusicVideo() {
 				fetchMusicVideos().then((data) => {
-					if(!data.mvids.length) {
+					if(!data.mvids) {
 						fetchAndSetDailyMusicVideo();
 					}
 					let musicIndex = generateRandomNumber(0, data.mvids.length - 1);
