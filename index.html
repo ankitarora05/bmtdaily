@@ -489,6 +489,8 @@
 			</div>
 			<div class="bmt-daily-movie-container-now-playing"></div>
 			<div class="bmt-daily-movie-container"></div>
+			<div class="bmt-daily-popular-container"></div>
+			<div class="bmt-daily-top-rated-container"></div>
 		</div>
 		<hr />
 		<div class="btmdaily-tech-blog">
@@ -1042,7 +1044,6 @@
             
 					let region = data.country_code2 || JSON.parse(JSON.stringify(window.countries.find((item, index)=>{
                 if(item.name === country) {
-                    console.log(item.name);
                     return item;
                 }
             }))).code;
@@ -1056,7 +1057,6 @@
 							".bmt-daily-movie-container"
 						);
 						let html = ``;
-						console.log(response);
 						response.results.forEach((item) => {
 							html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
 								item.title
@@ -1102,7 +1102,6 @@
             
 					let region = data.country_code2 || JSON.parse(JSON.stringify(window.countries.find((item, index)=>{
                 if(item.name === country) {
-                    console.log(item.name);
                     return item;
                 }
             }))).code;
@@ -1116,7 +1115,6 @@
 							".bmt-daily-movie-container-now-playing"
 						);
 						let html = ``;
-						console.log(response);
 						response.results.forEach((item) => {
 							html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
 								item.title
@@ -1138,5 +1136,121 @@
 					.catch((err) => console.error(err));
 			});
 		</script>
+
+		<script async>
+			async function fetchLocation() {
+				const response = await fetch(
+					"https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc"
+				);
+				const location = await response.json();
+				return location;
+			}
+			const options3 = {
+				method: "GET",
+				headers: {
+					accept: "application/json",
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTg4YTdkYTJlNmI1ODlkZjdiOTMxZjJlODRiM2U4ZCIsInN1YiI6IjY1OGE2YmVhNjhiNzY2NjhmYjJkNTI2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHyPp_R-LlB-vPnv5P2FJiofzqOHfZ00STejIvTOTUg",
+				},
+			};
+
+			fetchLocation().then((data) => {
+                
+				let country = (new Date()).toString().split('(')[1].split(" ")[0];
+            
+					let region = data.country_code2 || JSON.parse(JSON.stringify(window.countries.find((item, index)=>{
+                if(item.name === country) {
+                    return item;
+                }
+            }))).code;
+				fetch(
+					`https://api.themoviedb.org/3/movie/top_rated?page=1&region=${region}`,
+					options3
+				)
+					.then((response) => response.json())
+					.then((response) => {
+						let moviesContainer = document.querySelector(
+							".bmt-daily-top-rated-container"
+						);
+						let html = ``;
+						response.results.forEach((item) => {
+							html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
+								item.title
+							}<br/><span>${item.overview}</span><br/><span>Popularity: ${
+								item.popularity
+							}</span><br/><span>Lanuage: ${
+								item.original_language
+							}</span><br/><span>Releasing: ${item.release_date
+								.split("-")
+								.reverse()
+								.join(
+									"-"
+								)}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${
+								item.poster_path || item.backdrop_path
+							}" alt="${item.original_title}"></span>`;
+						});
+						moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> All-Time Top-Rated Movies Worldwide</div><div class="bmt-movie-scroll-container">${html}</div>`;
+					})
+					.catch((err) => console.error(err));
+			});
+		</script>
+
+<script async>
+	async function fetchLocation() {
+		const response = await fetch(
+			"https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc"
+		);
+		const location = await response.json();
+		return location;
+	}
+	const options4 = {
+		method: "GET",
+		headers: {
+			accept: "application/json",
+			Authorization:
+				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTg4YTdkYTJlNmI1ODlkZjdiOTMxZjJlODRiM2U4ZCIsInN1YiI6IjY1OGE2YmVhNjhiNzY2NjhmYjJkNTI2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHyPp_R-LlB-vPnv5P2FJiofzqOHfZ00STejIvTOTUg",
+		},
+	};
+
+	fetchLocation().then((data) => {
+		
+		let country = (new Date()).toString().split('(')[1].split(" ")[0];
+	
+			let region = data.country_code2 || JSON.parse(JSON.stringify(window.countries.find((item, index)=>{
+		if(item.name === country) {
+			return item;
+		}
+	}))).code;
+		fetch(
+			`https://api.themoviedb.org/3/movie/popular?page=1&region=${region}`,
+			options4
+		)
+			.then((response) => response.json())
+			.then((response) => {
+				let moviesContainer = document.querySelector(
+					".bmt-daily-popular-container"
+				);
+				let html = ``;
+				response.results.forEach((item) => {
+					html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
+						item.title
+					}<br/><span>${item.overview}</span><br/><span>Popularity: ${
+						item.popularity
+					}</span><br/><span>Lanuage: ${
+						item.original_language
+					}</span><br/><span>Releasing: ${item.release_date
+						.split("-")
+						.reverse()
+						.join(
+							"-"
+						)}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${
+						item.poster_path || item.backdrop_path
+					}" alt="${item.original_title}"></span>`;
+				});
+				moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Popular Movies Worldwide</div><div class="bmt-movie-scroll-container">${html}</div>`;
+			})
+			.catch((err) => console.error(err));
+	});
+</script>
 	</body>
 </html>
