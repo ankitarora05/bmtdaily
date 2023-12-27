@@ -1,4 +1,4 @@
-const staticDevCoffee = "bmt-daily-cache-v1"
+const staticDevCoffee = "bmt-daily-cache-v2"
 const assets = [
   "/",
   "/index.html",
