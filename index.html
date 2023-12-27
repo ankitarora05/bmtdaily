@@ -16,11 +16,6 @@
 		<link rel="apple-touch-icon" href="android-launchericon-512-512.png" />
 		<meta name="apple-mobile-web-app-status-bar" content="#784ba0" />
 		<meta name="theme-color" content="#2b86c5" />
-		<link rel="stylesheet" type="text/css" href="addToHomeScreen.css">
-		<script src="addToHomeScreen.js"></script>
-		<script>
-		addToHomescreen();
-		</script>
 		<title>BMT Daily - Bubble Media Technology</title>
 		<link
 			rel="icon"
@@ -375,6 +370,54 @@
 				display: flex;
 			}
 
+			.bmt-daily-trailer-slider {
+				background-color: #3434;
+				overflow: auto;
+				white-space: nowrap;
+				padding: 10px;
+				border-radius: 8px;
+				margin: 10px 0;
+			}
+			.btm-daily-upcoming-movie-trailer {
+				background-color: #3434;
+				overflow: auto;
+				white-space: nowrap;
+				padding: 10px;
+				border-radius: 8px;
+				margin: 10px 0;
+				display: inline-block;
+				width: 300px;
+    			height: 200px;
+			}
+			.btm-daily-upcoming-movie-trailer iframe {
+				width: 100%;
+				height: 100%;
+			}
+
+			.bmt-daily-now-playing-trailer-slider {
+				background-color: #3434;
+				overflow: auto;
+				white-space: nowrap;
+				padding: 10px;
+				border-radius: 8px;
+				margin: 10px 0;
+			}
+
+			.btm-daily-now-playing-movie-trailer {
+				background-color: #3434;
+				overflow: auto;
+				white-space: nowrap;
+				padding: 10px;
+				border-radius: 8px;
+				margin: 10px 0;
+				display: inline-block;
+				width: 300px;
+    			height: 200px;
+			}
+			.btm-daily-now-playing-movie-trailer iframe {
+				width: 100%;
+				height: 100%;
+			}
 			/*Media Queries*/
 			@media (max-width: 320px) {
 				/* smartphones, iPhone, portrait 480x320 phones */
@@ -559,7 +602,9 @@
 				</div>
 				<div>BMT Daily Entertainment: Cinematic Delights in Your Area</div>
 			</div>
+			<div class="bmt-daily-trailer-slider"></div>
 			<div class="bmt-daily-movie-container-now-playing"></div>
+			<div class="bmt-daily-now-playing-trailer-slider"></div>
 			<div class="bmt-daily-movie-container"></div>
 			<div class="bmt-daily-popular-container"></div>
 			<div class="bmt-daily-top-rated-container"></div>
@@ -1001,9 +1046,12 @@
 				111239, 112119, 111239, 111238, 112120, 112121, 112123,
 			];
 
+			window["trailerID"] = [];
+			window["nowPlayingTrailerID"] = [];
+
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", function () {
-					navigator.serviceWorker.register("/pwa-worker-file.js").then((res) => {
+					navigator.serviceWorker.register("/pwa-worker.js").then((res) => {
 						reg.addEventListener("updatefound", () => {
 							const newSW = reg.installing;
 							newSW.addEventListener("statechange", () => {
@@ -1408,13 +1456,6 @@
 			fetchAndSetVideos();
 		</script>
 		<script async>
-			async function fetchLocation() {
-				const response = await fetch(
-					"https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc"
-				);
-				const location = await response.json();
-				return location;
-			}
 			const options = {
 				method: "GET",
 				headers: {
@@ -1423,6 +1464,14 @@
 						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTg4YTdkYTJlNmI1ODlkZjdiOTMxZjJlODRiM2U4ZCIsInN1YiI6IjY1OGE2YmVhNjhiNzY2NjhmYjJkNTI2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHyPp_R-LlB-vPnv5P2FJiofzqOHfZ00STejIvTOTUg",
 				},
 			};
+
+			async function fetchLocation() {
+				const response = await fetch(
+					"https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc"
+				);
+				const location = await response.json();
+				return location;
+			}
 
 			fetchLocation().then((data) => {
 				let country = new Date().toString().split("(")[1].split(" ")[0];
@@ -1449,6 +1498,11 @@
 						);
 						let html = ``;
 						response.results.forEach((item) => {
+							window["trailerID"].push(
+								`https://api.themoviedb.org/3/movie/${item.id}/videos?language=en-US`
+							);
+							
+
 							html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
 								item.title
 							}<br/><span>${item.overview}</span><br/><span>Popularity: ${
@@ -1465,6 +1519,32 @@
 							}" alt="${item.original_title}"></span>`;
 						});
 						moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Movies that are being released soon near you</div><div class="bmt-movie-scroll-container">${html}</div>`;
+						Promise.all(
+							window.trailerID.map((url) =>
+								fetch(url, options).then((resp) => resp.json())
+							)
+						).then((data) => {
+							window.trailerLink = data.filter((item)=>{
+								 if(item.results.length > 0) {
+									return item;
+								 }
+							});
+							let html = ``;
+							window.trailerLink.forEach((item)=>{
+								html += `
+									<div class="btm-daily-upcoming-movie-trailer">	
+										<iframe
+											src="https://www.youtube.com/embed/${item.results[0].key}"
+											frameborder="0"
+											allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+											allowfullscreen
+										></iframe>
+									</div>
+								`;
+							})
+							let trailerElement = document.querySelector('.bmt-daily-trailer-slider');
+							trailerElement.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Upcoming Movies Trailer</div><div>${html}</div>`;
+						});
 					})
 					.catch((err) => console.error(err));
 			});
@@ -1511,7 +1591,11 @@
 							".bmt-daily-movie-container-now-playing"
 						);
 						let html = ``;
+						
 						response.results.forEach((item) => {
+							window["nowPlayingTrailerID"].push(
+								`https://api.themoviedb.org/3/movie/${item.id}/videos?language=en-US`
+							);
 							html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
 								item.title
 							}<br/><span>${item.overview}</span><br/><span>Popularity: ${
@@ -1528,6 +1612,32 @@
 							}" alt="${item.original_title}"></span>`;
 						});
 						moviesContainer.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Movies that are currently in theatres near you</div><div class="bmt-movie-scroll-container">${html}</div>`;
+						Promise.all(
+							window.nowPlayingTrailerID.map((url) =>
+								fetch(url, options).then((resp) => resp.json())
+							)
+						).then((data) => {
+							window.trailerNowLink = data.filter((item)=>{
+								 if(item.results.length > 0) {
+									return item;
+								 }
+							});
+							let html = ``;
+							window.trailerNowLink.forEach((item)=>{
+								html += `
+									<div class="btm-daily-upcoming-movie-trailer">	
+										<iframe
+											src="https://www.youtube.com/embed/${item.results[0].key}"
+											frameborder="0"
+											allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+											allowfullscreen
+										></iframe>
+									</div>
+								`;
+							})
+							let nowPlayingTrailerElement = document.querySelector('.bmt-daily-now-playing-trailer-slider');
+							nowPlayingTrailerElement.innerHTML = `<div class="movies-section-divider"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#2400d6" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg> Movies Trailers that are currently in theatres near you</div><div>${html}</div>`;
+						});
 					})
 					.catch((err) => console.error(err));
 			});
@@ -1789,7 +1899,7 @@
 
 			async function fetchAndSetDailyMusicVideo() {
 				fetchMusicVideos().then((data) => {
-					if(!data.mvids) {
+					if (!data.mvids) {
 						fetchAndSetDailyMusicVideo();
 					}
 					let musicIndex = generateRandomNumber(0, data.mvids.length - 1);
