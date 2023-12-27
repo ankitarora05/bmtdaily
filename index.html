@@ -482,14 +482,16 @@
 			</div>
 
 			<div class="youtube-video-container">
-				<div class="btm-daily-video-container"></div>
+				<div class="btm-daily-channel-container"></div>
 			</div>
 
 			<hr/>
 
 			<div class="youtube-video-container">
-				<div class="btm-daily-channel-container"></div>
+				<div class="btm-daily-video-container"></div>
 			</div>
+
+			
 			
 		</div>
 		<hr />
@@ -1005,7 +1007,7 @@
 			}
 			async function fetchTrendingYoutubeVideoForRegion(reg) {
 				const response = await fetch(
-					`https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=${reg}&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q&maxResults=200`
+					`https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=${reg}&key=AIzaSyBLW66Nq3F6Jayj-T8us3IdN3wgBK4NDCg&maxResults=200`
 				);
 				const videos = await response.json();
 				return videos;
@@ -1299,17 +1301,17 @@
 	// 	return location;
 	// }
 	async function fetchPopularChannelCategories() {
-		const vidResponse = await fetch('https://www.googleapis.com/youtube/v3/videoCategories?regionCode=IN&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q&maxResults=200');
+		const vidResponse = await fetch('https://www.googleapis.com/youtube/v3/videoCategories?regionCode=IN&key=AIzaSyBLW66Nq3F6Jayj-T8us3IdN3wgBK4NDCg&maxResults=200');
 		const channelList = await vidResponse.json();
 		return channelList;
 	}
 	async function fetchChannelDetails(channelId) {
-		const channelResponse = await fetch(`https://www.googleapis.com/youtube/v3/channels/?id=${channelId}&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q`);
+		const channelResponse = await fetch(`https://www.googleapis.com/youtube/v3/channels/?id=${channelId}&key=AIzaSyBLW66Nq3F6Jayj-T8us3IdN3wgBK4NDCg`);
 		const channelDetails = await channelResponse.json();
 		return channelDetails;
 	}
 	async function fetchChannelVideo(chanelDetails) {
-		const channelVideo = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${chanelDetails}&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q&maxResults=50&order=viewcount`);
+		const channelVideo = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${chanelDetails}&key=AIzaSyBLW66Nq3F6Jayj-T8us3IdN3wgBK4NDCg&maxResults=50&order=viewcount`);
 		const video = await channelVideo.json();
 		return video;
 	}
