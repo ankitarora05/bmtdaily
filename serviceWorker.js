@@ -6,7 +6,7 @@ const assets = [
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(staticDevCoffee).then(cache => {
+    caches.open(bmtDailyWebCache).then(cache => {
       cache.addAll(assets)
     })
   )
