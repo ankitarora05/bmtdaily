@@ -1001,7 +1001,24 @@
 				window.addEventListener("load", function () {
 					navigator.serviceWorker
 						.register("/pwa-worker.js")
-						.then((res) => console.log("service worker registered"))
+						.then((res) => 
+							
+							reg.addEventListener('updatefound', () => {
+
+						    const newSW = reg.installing;
+						    newSW.addEventListener('statechange', () => {
+						
+						      // Check service worker state
+						      if (newSW.state === 'installed') {
+							  // A new SW is available and installed.
+							  // You can update the page directly or better
+							  // show a notification to the user to prompt for a page reload 
+							  // and inform about the new version available
+							      window.location.reload(true);
+							 }
+						       });
+						      });
+							console.log("service worker registered"))
 						.catch((err) => console.log("service worker not registered", err));
 				});
 			}
