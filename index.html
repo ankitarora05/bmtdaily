@@ -1052,7 +1052,7 @@
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", function () {
 					navigator.serviceWorker.register("/pwa-worker.js").then((res) => {
-						reg.addEventListener("updatefound", () => {
+						res.addEventListener("updatefound", () => {
 							const newSW = reg.installing;
 							newSW.addEventListener("statechange", () => {
 								// Check service worker state
