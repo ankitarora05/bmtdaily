@@ -1784,6 +1784,9 @@
 
 			async function fetchAndSetDailyMusicVideo() {
 				fetchMusicVideos().then((data) => {
+					if(!data.mvids.length) {
+						fetchAndSetDailyMusicVideo();
+					}
 					let musicIndex = generateRandomNumber(0, data.mvids.length - 1);
 					let musicVideoContainer = document.querySelector(
 						".btm-daily-music-container"
