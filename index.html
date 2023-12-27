@@ -243,7 +243,7 @@
 			.youtube-video-container {
 				position: relative;
 				width: 70%;
-				margin: 50px auto;
+				margin: 70px auto;
 			}
 			.bmt-daily-trending-video-info {
 				position: relative;
@@ -266,6 +266,20 @@
 				height: 100%;
 			}
 			.bmt-daily-video-refresh {
+				position: absolute;
+				bottom: -47px;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.bmt-daily-popular-youtube-category {
+				position: relative;
+				top: -34px;
+				font-size: 22px;
+				text-align: center;
+			}
+
+			.bmt-daily-youtube-channel-refresh {
 				position: absolute;
 				bottom: -47px;
 				width: 100%;
@@ -464,9 +478,18 @@
 				</div>
 				<div>BMT Daily Loop: Your Daily Destination for Trending Videos</div>
 			</div>
+
+			<div class="youtube-video-container">
+				<div class="btm-daily-channel-container"></div>
+			</div>
+
+			<hr/>
+
 			<div class="youtube-video-container">
 				<div class="btm-daily-video-container"></div>
 			</div>
+
+			
 		</div>
 		<hr />
 		<div class="btmdaily-tech-blog">
@@ -647,7 +670,18 @@
 		</div>
 		<script>
 			window["countries"] = [{name:"Afghanistan",code:"AF"},{name:"Åland Islands",code:"AX"},{name:"Albania",code:"AL"},{name:"Algeria",code:"DZ"},{name:"American Samoa",code:"AS"},{name:"AndorrA",code:"AD"},{name:"Angola",code:"AO"},{name:"Anguilla",code:"AI"},{name:"Antarctica",code:"AQ"},{name:"Antigua and Barbuda",code:"AG"},{name:"Argentina",code:"AR"},{name:"Armenia",code:"AM"},{name:"Aruba",code:"AW"},{name:"Australia",code:"AU"},{name:"Austria",code:"AT"},{name:"Azerbaijan",code:"AZ"},{name:"Bahamas",code:"BS"},{name:"Bahrain",code:"BH"},{name:"Bangladesh",code:"BD"},{name:"Barbados",code:"BB"},{name:"Belarus",code:"BY"},{name:"Belgium",code:"BE"},{name:"Belize",code:"BZ"},{name:"Benin",code:"BJ"},{name:"Bermuda",code:"BM"},{name:"Bhutan",code:"BT"},{name:"Bolivia",code:"BO"},{name:"Bosnia and Herzegovina",code:"BA"},{name:"Botswana",code:"BW"},{name:"Bouvet Island",code:"BV"},{name:"Brazil",code:"BR"},{name:"British Indian Ocean Territory",code:"IO"},{name:"Brunei Darussalam",code:"BN"},{name:"Bulgaria",code:"BG"},{name:"Burkina Faso",code:"BF"},{name:"Burundi",code:"BI"},{name:"Cambodia",code:"KH"},{name:"Cameroon",code:"CM"},{name:"Canada",code:"CA"},{name:"Cape Verde",code:"CV"},{name:"Cayman Islands",code:"KY"},{name:"Central African Republic",code:"CF"},{name:"Chad",code:"TD"},{name:"Chile",code:"CL"},{name:"China",code:"CN"},{name:"Christmas Island",code:"CX"},{name:"Cocos (Keeling) Islands",code:"CC"},{name:"Colombia",code:"CO"},{name:"Comoros",code:"KM"},{name:"Congo",code:"CG"},{name:"Congo, The Democratic Republic of the",code:"CD"},{name:"Cook Islands",code:"CK"},{name:"Costa Rica",code:"CR"},{name:'Cote D"Ivoire',code:"CI"},{name:"Croatia",code:"HR"},{name:"Cuba",code:"CU"},{name:"Cyprus",code:"CY"},{name:"Czech Republic",code:"CZ"},{name:"Denmark",code:"DK"},{name:"Djibouti",code:"DJ"},{name:"Dominica",code:"DM"},{name:"Dominican Republic",code:"DO"},{name:"Ecuador",code:"EC"},{name:"Egypt",code:"EG"},{name:"El Salvador",code:"SV"},{name:"Equatorial Guinea",code:"GQ"},{name:"Eritrea",code:"ER"},{name:"Estonia",code:"EE"},{name:"Ethiopia",code:"ET"},{name:"Falkland Islands (Malvinas)",code:"FK"},{name:"Faroe Islands",code:"FO"},{name:"Fiji",code:"FJ"},{name:"Finland",code:"FI"},{name:"France",code:"FR"},{name:"French Guiana",code:"GF"},{name:"French Polynesia",code:"PF"},{name:"French Southern Territories",code:"TF"},{name:"Gabon",code:"GA"},{name:"Gambia",code:"GM"},{name:"Georgia",code:"GE"},{name:"Germany",code:"DE"},{name:"Ghana",code:"GH"},{name:"Gibraltar",code:"GI"},{name:"Greece",code:"GR"},{name:"Greenland",code:"GL"},{name:"Grenada",code:"GD"},{name:"Guadeloupe",code:"GP"},{name:"Guam",code:"GU"},{name:"Guatemala",code:"GT"},{name:"Guernsey",code:"GG"},{name:"Guinea",code:"GN"},{name:"Guinea-Bissau",code:"GW"},{name:"Guyana",code:"GY"},{name:"Haiti",code:"HT"},{name:"Heard Island and Mcdonald Islands",code:"HM"},{name:"Holy See (Vatican City State)",code:"VA"},{name:"Honduras",code:"HN"},{name:"Hong Kong",code:"HK"},{name:"Hungary",code:"HU"},{name:"Iceland",code:"IS"},{name:"India",code:"IN"},{name:"Indonesia",code:"ID"},{name:"Iran, Islamic Republic Of",code:"IR"},{name:"Iraq",code:"IQ"},{name:"Ireland",code:"IE"},{name:"Isle of Man",code:"IM"},{name:"Israel",code:"IL"},{name:"Italy",code:"IT"},{name:"Jamaica",code:"JM"},{name:"Japan",code:"JP"},{name:"Jersey",code:"JE"},{name:"Jordan",code:"JO"},{name:"Kazakhstan",code:"KZ"},{name:"Kenya",code:"KE"},{name:"Kiribati",code:"KI"},{name:'Korea, Democratic People"S Republic of',code:"KP"},{name:"Korea, Republic of",code:"KR"},{name:"Kuwait",code:"KW"},{name:"Kyrgyzstan",code:"KG"},{name:'Lao People"S Democratic Republic',code:"LA"},{name:"Latvia",code:"LV"},{name:"Lebanon",code:"LB"},{name:"Lesotho",code:"LS"},{name:"Liberia",code:"LR"},{name:"Libyan Arab Jamahiriya",code:"LY"},{name:"Liechtenstein",code:"LI"},{name:"Lithuania",code:"LT"},{name:"Luxembourg",code:"LU"},{name:"Macao",code:"MO"},{name:"Macedonia, The Former Yugoslav Republic of",code:"MK"},{name:"Madagascar",code:"MG"},{name:"Malawi",code:"MW"},{name:"Malaysia",code:"MY"},{name:"Maldives",code:"MV"},{name:"Mali",code:"ML"},{name:"Malta",code:"MT"},{name:"Marshall Islands",code:"MH"},{name:"Martinique",code:"MQ"},{name:"Mauritania",code:"MR"},{name:"Mauritius",code:"MU"},{name:"Mayotte",code:"YT"},{name:"Mexico",code:"MX"},{name:"Micronesia, Federated States of",code:"FM"},{name:"Moldova, Republic of",code:"MD"},{name:"Monaco",code:"MC"},{name:"Mongolia",code:"MN"},{name:"Montserrat",code:"MS"},{name:"Morocco",code:"MA"},{name:"Mozambique",code:"MZ"},{name:"Myanmar",code:"MM"},{name:"Namibia",code:"NA"},{name:"Nauru",code:"NR"},{name:"Nepal",code:"NP"},{name:"Netherlands",code:"NL"},{name:"Netherlands Antilles",code:"AN"},{name:"New Caledonia",code:"NC"},{name:"New Zealand",code:"NZ"},{name:"Nicaragua",code:"NI"},{name:"Niger",code:"NE"},{name:"Nigeria",code:"NG"},{name:"Niue",code:"NU"},{name:"Norfolk Island",code:"NF"},{name:"Northern Mariana Islands",code:"MP"},{name:"Norway",code:"NO"},{name:"Oman",code:"OM"},{name:"Pakistan",code:"PK"},{name:"Palau",code:"PW"},{name:"Palestinian Territory, Occupied",code:"PS"},{name:"Panama",code:"PA"},{name:"Papua New Guinea",code:"PG"},{name:"Paraguay",code:"PY"},{name:"Peru",code:"PE"},{name:"Philippines",code:"PH"},{name:"Pitcairn",code:"PN"},{name:"Poland",code:"PL"},{name:"Portugal",code:"PT"},{name:"Puerto Rico",code:"PR"},{name:"Qatar",code:"QA"},{name:"Reunion",code:"RE"},{name:"Romania",code:"RO"},{name:"Russian Federation",code:"RU"},{name:"RWANDA",code:"RW"},{name:"Saint Helena",code:"SH"},{name:"Saint Kitts and Nevis",code:"KN"},{name:"Saint Lucia",code:"LC"},{name:"Saint Pierre and Miquelon",code:"PM"},{name:"Saint Vincent and the Grenadines",code:"VC"},{name:"Samoa",code:"WS"},{name:"San Marino",code:"SM"},{name:"Sao Tome and Principe",code:"ST"},{name:"Saudi Arabia",code:"SA"},{name:"Senegal",code:"SN"},{name:"Serbia and Montenegro",code:"CS"},{name:"Seychelles",code:"SC"},{name:"Sierra Leone",code:"SL"},{name:"Singapore",code:"SG"},{name:"Slovakia",code:"SK"},{name:"Slovenia",code:"SI"},{name:"Solomon Islands",code:"SB"},{name:"Somalia",code:"SO"},{name:"South Africa",code:"ZA"},{name:"South Georgia and the South Sandwich Islands",code:"GS"},{name:"Spain",code:"ES"},{name:"Sri Lanka",code:"LK"},{name:"Sudan",code:"SD"},{name:"Suriname",code:"SR"},{name:"Svalbard and Jan Mayen",code:"SJ"},{name:"Swaziland",code:"SZ"},{name:"Sweden",code:"SE"},{name:"Switzerland",code:"CH"},{name:"Syrian Arab Republic",code:"SY"},{name:"Taiwan",code:"TW"},{name:"Tajikistan",code:"TJ"},{name:"Tanzania, United Republic of",code:"TZ"},{name:"Thailand",code:"TH"},{name:"Timor-Leste",code:"TL"},{name:"Togo",code:"TG"},{name:"Tokelau",code:"TK"},{name:"Tonga",code:"TO"},{name:"Trinidad and Tobago",code:"TT"},{name:"Tunisia",code:"TN"},{name:"Turkey",code:"TR"},{name:"Turkmenistan",code:"TM"},{name:"Turks and Caicos Islands",code:"TC"},{name:"Tuvalu",code:"TV"},{name:"Uganda",code:"UG"},{name:"Ukraine",code:"UA"},{name:"United Arab Emirates",code:"AE"},{name:"United Kingdom",code:"GB"},{name:"United States",code:"US"},{name:"United States Minor Outlying Islands",code:"UM"},{name:"Uruguay",code:"UY"},{name:"Uzbekistan",code:"UZ"},{name:"Vanuatu",code:"VU"},{name:"Venezuela",code:"VE"},{name:"Viet Nam",code:"VN"},{name:"Virgin Islands, British",code:"VG"},{name:"Virgin Islands, U.S.",code:"VI"},{name:"Wallis and Futuna",code:"WF"},{name:"Western Sahara",code:"EH"},{name:"Yemen",code:"YE"},{name:"Zambia",code:"ZM"},{name:"Zimbabwe",code:"ZW"}];
-            document.getElementById("year").innerHTML = new Date().getFullYear();
+            window['youtube_public'] = {
+				'categories.list': 'https://www.googleapis.com/youtube/v3/videoCategories',
+				'videos.list': 'https://www.googleapis.com/youtube/v3/videos',
+				'search.list': 'https://www.googleapis.com/youtube/v3/search',
+				'channels.list': 'https://www.googleapis.com/youtube/v3/channels',
+				'playlists.list': 'https://www.googleapis.com/youtube/v3/playlists',
+				'playlistItems.list': 'https://www.googleapis.com/youtube/v3/playlistItems',
+				'activities': 'https://www.googleapis.com/youtube/v3/activities',
+				'commentThreads.list': 'https://www.googleapis.com/youtube/v3/commentThreads',
+			};
+			
+			document.getElementById("year").innerHTML = new Date().getFullYear();
 			// const canvas = document.getElementById("snakeCanvas");
 			let canvas = document.createElement("canvas");
 			canvas.id = "snakeCanvas";
@@ -1251,6 +1285,93 @@
 			})
 			.catch((err) => console.error(err));
 	});
+</script>
+
+
+
+<script async>
+	// async function fetchLocalTrendingVideo() {
+	// 	const locResponse = await fetch(
+	// 		"https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc"
+	// 	);
+	// 	const location = await locResponse.json();
+	// 	return location;
+	// }
+	async function fetchPopularChannelCategories() {
+		const vidResponse = await fetch('https://www.googleapis.com/youtube/v3/videoCategories?regionCode=IN&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q&maxResults=200');
+		const channelList = await vidResponse.json();
+		return channelList;
+	}
+	async function fetchChannelDetails(channelId) {
+		const channelResponse = await fetch(`https://www.googleapis.com/youtube/v3/channels/?id=${channelId}&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q`);
+		const channelDetails = await channelResponse.json();
+		return channelDetails;
+	}
+	async function fetchChannelVideo(chanelDetails) {
+		const channelVideo = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${chanelDetails}&key=AIzaSyAKNoU-0HMkEbpNLrfBS-qIQMfIprk_R8Q&maxResults=50&order=viewcount`);
+		const video = await channelVideo.json();
+		return video;
+	}
+	function generateRandomNumber(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+
+	async function fetchAndSetChannelVideos() {	
+		    let responseChannel, responseChannelDetail, responseChannelVideo;
+			try {
+				responseChannel = await fetchPopularChannelCategories();
+			}catch(e) {
+				fetchAndSetChannelVideos();
+			}
+
+			let randomChannelIndex = generateRandomNumber(0, responseChannel.items.length - 1);
+
+			try {
+				responseChannelDetail = await fetchChannelDetails(responseChannel.items[randomChannelIndex].snippet.channelId);
+			}catch(e) {
+				fetchAndSetChannelVideos();
+			}
+			
+			let randomChannelVideoIndex = generateRandomNumber(0, responseChannelDetail.items.length - 1);
+
+			try {
+				responseChannelVideo = await fetchChannelVideo(responseChannelDetail.items[randomChannelVideoIndex].id);
+			}catch(e) {
+				fetchAndSetChannelVideos();
+			}
+
+			
+			
+			let randomChannelVideoIndexValue = generateRandomNumber(0, responseChannelVideo.items.length - 1);
+
+			let channelVideoContainer = document.querySelector('.btm-daily-channel-container');
+			if(!responseChannel.items || !responseChannel.items[randomChannelVideoIndexValue] || !responseChannel.items[randomChannelVideoIndexValue].snippet || !responseChannel.items[randomChannelVideoIndexValue].snippet.title) {
+				fetchAndSetChannelVideos();
+			}
+			let html = `
+			<div class="bmt-daily-popular-youtube-category">Popular Video Worldwide Today in ${responseChannel.items[randomChannelVideoIndexValue].snippet.title}</div>
+
+			<iframe
+				width="460"
+				height="315"
+				src="https://www.youtube.com/embed/${responseChannelVideo.items[randomChannelVideoIndexValue].id.videoId}"
+				frameborder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen
+			></iframe>
+
+			<div class="bmt-daily-youtube-channel-refresh"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg></div>
+`;
+			channelVideoContainer.innerHTML = html;
+
+			let refreshButton = document.querySelector(
+				".bmt-daily-youtube-channel-refresh"
+			);
+			refreshButton.addEventListener("click", () => {
+				fetchAndSetChannelVideos();
+			});
+	}
+	fetchAndSetChannelVideos();
 </script>
 	</body>
 </html>
