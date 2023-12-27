@@ -12,10 +12,16 @@ self.addEventListener("install", installEvent => {
   );
 });
 
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request);
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.open(bmtDailyPWACache).then(cache => {
+      return cache.match(event.request).then(response => {
+        let fetchPromise = fetch(event.request).then(networkResponse => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        return response || fetchPromise;
+      });
     })
   );
 });
