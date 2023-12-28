@@ -394,6 +394,22 @@
 				height: 100%;
 			}
 
+			.btm-daily-new-music {
+				background-color: #3434;
+				overflow: auto;
+				white-space: nowrap;
+				padding: 10px;
+				border-radius: 8px;
+				margin: 10px 0;
+				display: inline-block;
+				width: 300px;
+    			height: 200px;
+			}
+			.btm-daily-new-music iframe {
+				width: 100%;
+				height: 100%;
+			}
+
 			.bmt-daily-now-playing-trailer-slider {
 				background-color: #3434;
 				overflow: auto;
@@ -1921,9 +1937,9 @@
 			let html = ``;
 							data.mvids.forEach((item)=>{
 								html += `
-									<div class="btm-daily-upcoming-movie-trailer">
+									<div class="btm-daily-new-music">
 										<iframe
-											src="https://www.youtube.com/embed/${item.key}"
+											src="https://www.youtube.com/embed/${youtube_parser(item.strMusicVid)}"
 											frameborder="0"
 											allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 											allowfullscreen
@@ -1931,7 +1947,7 @@
 									</div>
 								`;
 							});
-					console.log(html);
+			
 
 					musicVideoContainer.innerHTML = html;
 
