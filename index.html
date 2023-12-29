@@ -2100,9 +2100,9 @@
 							"-"
 						)}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${
 						item.poster_path || item.backdrop_path
-					}" alt="${item.original_title}">
-					<span><br/></span>Votes: ${item.vote_count}</span>
- 					`;
+					}" alt="${item.original_title}"></span> <br/>
+					<span>Votes: ${item.vote_count}</span>
+					`;
 				});
 				moviesContainer.innerHTML = `<div class="bmt-movie-scroll-container">${html}</div>`;
 			})
