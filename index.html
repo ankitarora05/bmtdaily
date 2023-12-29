@@ -792,6 +792,9 @@
           });
         });
       }
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
       document.getElementById("year").innerHTML = new Date().getFullYear();
       // const canvas = document.getElementById("snakeCanvas");
       let canvas = document.createElement("canvas");
