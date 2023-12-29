@@ -2093,18 +2093,13 @@
 						item.popularity
 					}</span><br/><span>Language: ${
 						window.worldLanguage[`${item.original_language}`].English
-					}</span><br/><span>Releasing: ${item.release_date
-						.split("-")
-						.reverse()
-						.join(
-							"-"
-						)}</span><br/>
+					}</span><br/>
 					<span>Votes: ${item.vote_count}</span></span><img onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ankitarora05/snakegame/main/movie_default.png'" src="https://image.tmdb.org/t/p/original/${
 						item.poster_path || item.backdrop_path
 					}" alt="${item.original_title}"></span>
 					`;
 				});
-				moviesContainer.innerHTML = `<div class="bmt-movie-scroll-container" style='height: 550px;'>${html}</div>`;
+				moviesContainer.innerHTML = `<div class="bmt-movie-scroll-container" style='height: 540px;'>${html}</div>`;
 			})
 			.catch((err) => console.error(err));
 	};
