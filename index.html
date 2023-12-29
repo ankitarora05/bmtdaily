@@ -1653,7 +1653,7 @@
 							});
 							let html = ``;
 							let movies = window.arrayShuffle(window.trailerLink);
-				            movies.results.forEach((item) => {
+				            movies.forEach((item) => {
 								html += `
 									<div class="btm-daily-upcoming-movie-trailer">	
 										<iframe
@@ -2100,7 +2100,7 @@
 				);
 				let html = ``;
 				let movies = window.arrayShuffle(response.results);
-				movies.results.forEach((item) => {
+				movies.forEach((item) => {
 					html += `<span class="bmt-movie-scroll-wrapper"><span class="btm-movie-scroll-title">${
 						item.title
 					}<br/><a href="https://www.themoviedb.org/movie/${
