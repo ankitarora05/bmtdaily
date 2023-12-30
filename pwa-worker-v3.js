@@ -1,4 +1,4 @@
-const bmtDailyPWACache = "bmt-daily-site-v8";
+const bmtDailyPWACache = "bmt-daily-site-v";
 const assets = [
   "/",
   "/index.html",
@@ -28,7 +28,7 @@ self.addEventListener("fetch", event => {
       // Put the response in cache.
       cache.put(event.request.url, fetchResponse.clone());
       // And return the response.
-      return fetchResponse.
+      return fetchResponse;
     }
   }
   event.respondWith(returnCachedResource());
