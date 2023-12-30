@@ -1547,8 +1547,8 @@
 			});
 			let weekContainer = document.querySelector('.bmt-daily-week-rage');
 			let weekTrailerContainer = document.querySelector('.bmt-daily-week-rage-trailer');
-			weekContainer.innerHTML = sevenDaysAfter.getDay() + " " + month + " " + sevenDaysAfter.getFullYear();
-			weekTrailerContainer.innerHTML = sevenDaysAfter.getDay() + " " + month + " " + sevenDaysAfter.getFullYear();
+			weekContainer.innerHTML = sevenDaysAfter.getDate() + " " + month + " " + sevenDaysAfter.getFullYear();
+			weekTrailerContainer.innerHTML = sevenDaysAfter.getDate() + " " + month + " " + sevenDaysAfter.getFullYear();
 			fetch(`https://api.themoviedb.org/3/trending/movie/week`, options3).then((response) => response.json()).then((response) => {
 				let moviesContainer = document.querySelector(".bmt-daily-weekly-top-rated-container");
 				let html = ``;
@@ -1617,7 +1617,7 @@
 				month: 'long'
 			});
 			let weekContainer = document.querySelector('.bmt-daily-tv-week-rage');
-			weekContainer.innerHTML = sevenDaysAfter.getDay() + " " + month + " " + sevenDaysAfter.getFullYear();
+			weekContainer.innerHTML = sevenDaysAfter.getDate() + " " + month + " " + sevenDaysAfter.getFullYear();
 			fetch(`https://api.themoviedb.org/3/trending/tv/week`, options3).then((response) => response.json()).then((response) => {
 				let moviesContainer = document.querySelector(".bmt-daily-weekly-top-rated-tv-container");
 				let html = ``;
