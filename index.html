@@ -1602,15 +1602,12 @@
 				month: 'long'
 			});
 			let weekContainer = document.querySelector('.bmt-daily-tv-week-rage');
-			let weekTrailerContainer = document.querySelector('.bmt-daily-tv-week-rage-trailer');
 			weekContainer.innerHTML = sevenDaysAfter.getDay() + " " + month + " " + sevenDaysAfter.getFullYear();
-			weekTrailerContainer.innerHTML = sevenDaysAfter.getDay() + " " + month + " " + sevenDaysAfter.getFullYear();
 			fetch(`https://api.themoviedb.org/3/trending/tv/week`, options3).then((response) => response.json()).then((response) => {
 				let moviesContainer = document.querySelector(".bmt-daily-weekly-top-rated-tv-container");
 				let html = ``;
 				let movies = window.arrayShuffle(response.results);
 				movies.forEach((item) => {
-					window["trailerTrendingTVShowsID"].push(`https://api.themoviedb.org/3/movie/${item.id}/videos?language=en-US`);
 					html += `
 																							<span class="bmt-movie-scroll-wrapper">
 																								<span class="btm-movie-scroll-title">${item.original_name
@@ -1634,31 +1631,6 @@
 				});
 				moviesContainer.innerHTML = `
 																								<div class="bmt-movie-scroll-container" style='height: 540px;'>${html}</div>`;
-				// Promise.all(window.trailerTrendingTVShowsID.map((url) => fetch(url, options).then((resp) => resp.json()))).then((data) => {
-				// 	window.trailerNowTrendingLink = data.filter((item) => {
-				// 		if (item.results.length > 0) {
-				// 			return item;
-				// 		}
-				// 	});
-				// 	let html = ``;
-				// 	let movies = window.arrayShuffle(window.trailerNowTrendingLink);
-				// 	movies.forEach((item) => {
-				// 		html += `
-									
-				// 																	<div class="btm-daily-upcoming-movie-trailer">
-				// 																		<iframe
-				// 							src="https://www.youtube.com/embed/${item.results[0].key}"
-				// 							frameborder="0"
-				// 							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-				// 							allowfullscreen
-				// 						></iframe>
-				// 																	</div>
-				// 				`;
-				// 	});
-				// 	let nowPlayingTrailerElement = document.querySelector(".btm-weekly-tv-upcoming-movie-trailer");
-				// 	nowPlayingTrailerElement.innerHTML = `
-				// 																	<div>${html}</div>`;
-				// });
 			}).catch((err) => console.error(err));
 		};
 		fetchAndSetWeeklyTVTopRated();</script>
