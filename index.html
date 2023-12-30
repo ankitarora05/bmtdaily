@@ -1068,6 +1068,7 @@
 																			<iframe width="400" height="450" loading="lazy" src="https://embed.windy.com/embed2.html?lat=${data.latitude}&lon=${data.longitude}&detailLat=${data.latitude}&detailLon=${data.longitude}&width=400&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
             `;
 				locationContainer.innerHTML = html;
+				window.setupLazyLoad();
 			});
 		}
 		fetchLocationAndSet();</script><script async>async function fetchLocalTrendingVideo() {
@@ -1122,6 +1123,7 @@
 																			</div>
         `;
 				videoContainer.innerHTML = html;
+				window.setupLazyLoad();
 				let refreshButton = document.querySelector(".bmt-daily-video-refresh");
 				refreshButton.addEventListener("click", () => {
 					fetchAndSetVideos();
@@ -1205,6 +1207,7 @@
 					let trailerElement = document.querySelector(".bmt-daily-trailer-slider");
 					trailerElement.innerHTML = `
 																				<div>${html}</div>`;
+																				window.setupLazyLoad();
 				});
 			}).catch((err) => console.error(err));
 		});</script><script async>async function fetchLocation() {
@@ -1284,6 +1287,7 @@
 					let nowPlayingTrailerElement = document.querySelector(".bmt-daily-now-playing-trailer-slider");
 					nowPlayingTrailerElement.innerHTML = `
 																					<div>${html}</div>`;
+																					window.setupLazyLoad();
 				});
 			}).catch((err) => console.error(err));
 		});</script><script async>async function fetchLocation() {
@@ -1337,6 +1341,7 @@
 				});
 				moviesContainer.innerHTML = `
 																						<div class="bmt-movie-scroll-container">${html}</div>`;
+																						window.setupLazyLoad();
 			}).catch((err) => console.error(err));
 		});</script><script async>async function fetchLocation() {
 			const response = await fetch("https://api.ipgeolocation.io/ipgeo?apiKey=acc26fb8614349859cd862d3f27d57fc");
@@ -1389,6 +1394,7 @@
 				});
 				moviesContainer.innerHTML = `
 																							<div class="bmt-movie-scroll-container">${html}</div>`;
+																							window.setupLazyLoad();
 			}).catch((err) => console.error(err));
 		});</script><script async>// async function fetchLocalTrendingVideo() {
 		// 	const locResponse = await fetch(
@@ -1461,6 +1467,7 @@
 																							</div>
 `;
 			channelVideoContainer.innerHTML = html;
+			window.setupLazyLoad();
 			let refreshButton = document.querySelector(".bmt-daily-youtube-channel-refresh");
 			refreshButton.addEventListener("click", () => {
 				fetchAndSetChannelVideos();
@@ -1519,6 +1526,7 @@
 																								</svg>
 																							</div>`;
 				let refreshButton = document.querySelector(".bmt-daily-artist-refresh");
+				window.setupLazyLoad();
 				refreshButton.addEventListener("click", () => {
 					fetchAndSetDailyMusicVideo();
 				});
@@ -1596,6 +1604,7 @@
 					let nowPlayingTrailerElement = document.querySelector(".btm-weekly-movie-upcoming-movie-trailer");
 					nowPlayingTrailerElement.innerHTML = `
 																					<div>${html}</div>`;
+																					window.setupLazyLoad();
 				});
 			}).catch((err) => console.error(err));
 		};
@@ -1637,10 +1646,58 @@
 				});
 				moviesContainer.innerHTML = `
 																								<div class="bmt-movie-scroll-container" style='height: 540px;'>${html}</div>`;
+																								window.setupLazyLoad();
 			}).catch((err) => console.error(err));
 		};
-		fetchAndSetWeeklyTVTopRated();
+		fetchAndSetWeeklyTVTopRated();</script><script defer>window.setupLazyLoad = () => {
+			var lazyloadImages;
 
+			if ("IntersectionObserver" in window) {
+				lazyloadImages = document.querySelectorAll(".lazy");
+				var imageObserver = new IntersectionObserver(function (entries, observer) {
+					entries.forEach(function (entry) {
+						if (entry.isIntersecting) {
+							var image = entry.target;
+							image.src = image.dataset.src;
+							image.classList.remove("lazy");
+							imageObserver.unobserve(image);
+						}
+					});
+				});
+
+				lazyloadImages.forEach(function (image) {
+					imageObserver.observe(image);
+				});
+			} else {
+				var lazyloadThrottleTimeout;
+				lazyloadImages = document.querySelectorAll(".lazy");
+
+				function lazyload() {
+					if (lazyloadThrottleTimeout) {
+						clearTimeout(lazyloadThrottleTimeout);
+					}
+
+					lazyloadThrottleTimeout = setTimeout(function () {
+						var scrollTop = window.pageYOffset;
+						lazyloadImages.forEach(function (img) {
+							if (img.offsetTop < (window.innerHeight + scrollTop)) {
+								img.src = img.dataset.src;
+								img.classList.remove('lazy');
+							}
+						});
+						if (lazyloadImages.length == 0) {
+							document.removeEventListener("scroll", lazyload);
+							window.removeEventListener("resize", lazyload);
+							window.removeEventListener("orientationChange", lazyload);
+						}
+					}, 20);
+				}
+
+				document.addEventListener("scroll", lazyload);
+				window.addEventListener("resize", lazyload);
+				window.addEventListener("orientationChange", lazyload);
+			}
+		}
 		document.addEventListener("DOMContentLoaded", function () {
-			//....
-		});</script><script defer>document.addEventListener("DOMContentLoaded",function(){var e;if("IntersectionObserver"in window){e=document.querySelectorAll(".lazy");var t=new IntersectionObserver(function(e,n){e.forEach(function(e){if(e.isIntersecting){var n=e.target;n.src=n.dataset.src,n.classList.remove("lazy"),t.unobserve(n)}})});e.forEach(function(e){t.observe(e)})}else{var n;function r(){n&&clearTimeout(n),n=setTimeout(function(){var n=window.pageYOffset;e.forEach(function(e){e.offsetTop<window.innerHeight+n&&(e.src=e.dataset.src,e.classList.remove("lazy"))}),0==e.length&&(document.removeEventListener("scroll",r),window.removeEventListener("resize",r),window.removeEventListener("orientationChange",r))},20)}e=document.querySelectorAll(".lazy"),document.addEventListener("scroll",r),window.addEventListener("resize",r),window.addEventListener("orientationChange",r)}})</script>
+			window.setupLazyLoad();
+		});</script>
