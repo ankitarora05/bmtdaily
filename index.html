@@ -1044,10 +1044,10 @@
                 `;
 				factContainer.innerHTML = html;
 				let refreshButton = document.querySelector(".bmt-daily-memes-refresh");
+                refreshMeme = false;
 				refreshButton.addEventListener("click", async () => {
                     refreshMeme = true;
 					await fetchAndSetMemes();
-                    refreshMeme = false;
 				});
 			});
 		}
