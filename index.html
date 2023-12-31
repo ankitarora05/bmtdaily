@@ -1044,9 +1044,9 @@
                 `;
 				factContainer.innerHTML = html;
 				let refreshButton = document.querySelector(".bmt-daily-memes-refresh");
-				refreshButton.addEventListener("click", () => {
+				refreshButton.addEventListener("click", async () => {
                     refreshMeme = true;
-					fetchAndSetMemes();
+					await fetchAndSetMemes();
                     refreshMeme = false;
 				});
 			});
