@@ -1,4 +1,4 @@
-const bmtDailyPWACache = "bmt-daily-site-v8";
+const bmtDailyPWACache = "bmt-daily-site-v9";
 const assets = [
   "/"
 ];
