@@ -778,7 +778,7 @@
             window.addEventListener("load", function () {
                 navigator.serviceWorker.register("/pwa-worker-v7.js").then((res) => {
                     res.addEventListener("updatefound", () => {
-                        const newSW = reg.installing;
+                        const newSW = res.installing;
                         newSW.addEventListener("statechange", () => {
                             // Check service worker state
                             if (newSW.state === "installed") {
