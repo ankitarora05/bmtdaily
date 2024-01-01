@@ -790,8 +790,8 @@
                             }
                         });
                     });
-                    console.log("service worker registered").catch((err) => console.log("service worker not registered", err));
-                });
+                    console.log("service worker registered");
+                }).catch((err) => console.log("service worker not registered", err));
             });
         }
         window.onbeforeunload = function () {
