@@ -1,43 +1,32 @@
 {
-  "name": "BMT Daily",
-  "short_name": "bmtdaily",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#784ba0",
-  "theme_color": "#2b86c5",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "/android-launchericon-72-72.png",
-      "type": "image/png", "sizes": "72x72"
-    },
-    {
-      "src": "/android-launchericon-96-96.png",
-      "type": "image/png", "sizes": "96x96"
-    },
-    {
-      "src": "/128.png",
-      "type": "image/png","sizes": "128x128"
-    },
-    {
-      "src": "/android-launchericon-144-144.png",
-      "type": "image/png", "sizes": "144x144"
-    },
-    {
-      "src": "/SplashScreen.scale-150.png",
-      "type": "image/png", "sizes": "152x152"
-    },
-    {
-      "src": "/android-launchericon-192-192.png",
-      "type": "image/png", "sizes": "192x192"
-    },
-    {
-      "src": "/SmallTile.scale-400.png",
-      "type": "image/png", "sizes": "384x384"
-    },
-    {
-      "src": "/android-launchericon-512-512.png",
-      "type": "image/png", "sizes": "512x512"
-    }
-  ]
+    "theme_color": "#2b86c5",
+    "background_color": "#784ba0",
+    "display": "standalone",
+    "scope": "https://bmtdaily.com/",
+    "start_url": "index.html",
+    "name": "BMT Daily",
+    "short_name": "bmtdaily",
+    "description": "Discover the pulse of the internet with our real-time updates, trending topics, and personalized feeds tailored to your interests.",
+    "icons": [
+        {
+            "src": "/android-launchericon-192-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-launchericon-512-512.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/SmallTile.scale-400.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-launchericon-512-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
