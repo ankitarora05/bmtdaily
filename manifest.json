@@ -7,26 +7,30 @@
     "name": "BMT Daily",
     "short_name": "bmtdaily",
     "description": "Discover the pulse of the internet with our real-time updates, trending topics, and personalized feeds tailored to your interests.",
-    "icons": [
-        {
-            "src": "/android-launchericon-192-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-launchericon-512-512.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        },
-        {
-            "src": "/SmallTile.scale-400.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-launchericon-512-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
+    "icons":  [
+      {
+        "src": "manifest-icon-192.maskable.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "manifest-icon-192.maskable.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "manifest-icon-512.maskable.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "manifest-icon-512.maskable.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
     ]
 }
