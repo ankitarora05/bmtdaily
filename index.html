@@ -776,7 +776,7 @@
         window["nowPlayingTrailerID"] = [];
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
-                navigator.serviceWorker.register("/pwa-worker-v6.js").then((res) => {
+                navigator.serviceWorker.register("/pwa-worker-v7.js").then((res) => {
                     res.addEventListener("updatefound", () => {
                         const newSW = reg.installing;
                         newSW.addEventListener("statechange", () => {
