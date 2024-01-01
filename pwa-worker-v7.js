@@ -7,7 +7,12 @@ const CACHE_APP = [
 const CACHE_STATIC = [
     'https://fonts.googleapis.com/css?family=Roboto:400,300,500,700',
     'https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed&display=swap',
-    'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC'
+    'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC',
+    'https://www.youtube.com/s/player/da154528/www-embed-player.vflset/www-embed-player.js',
+    'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC',
+    'https://embed.windy.com/js/leaflet140_patched_tileLayer.v14.js',
+    'https://www.youtube.com/s/player/da154528/player_ias.vflset/en_US/base.js',
+    
 ]
 
 self.addEventListener('install',function(e){
