@@ -7,8 +7,7 @@ const CACHE_APP = [
 const CACHE_STATIC = [
     'https://fonts.googleapis.com/css?family=Roboto:400,300,500,700',
     'https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed&display=swap',
-    'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC',
-    'https://embed.windy.com/js/leaflet140_patched_tileLayer.v14.js'
+    'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC'
 ]
 
 self.addEventListener('install',function(e){
