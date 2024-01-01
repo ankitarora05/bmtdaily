@@ -6,8 +6,6 @@ const CACHE_APP = [
 ]
 const CACHE_STATIC = [
     'https://fonts.googleapis.com/css?family=Roboto:400,300,500,700',
-    'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com',
     'https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed&display=swap',
     'https://www.googletagmanager.com/gtag/js?id=G-0WFRLF3VWC'
 ]
