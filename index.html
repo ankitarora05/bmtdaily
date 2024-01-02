@@ -1609,12 +1609,13 @@
                 fetchAndSetChannelVideos();
             });
         }
-        fetchAndSetChannelVideos();</script><script async>function generateRandomNumber(min, max) {
+        fetchAndSetChannelVideos();</script><script async>let currentArtist = '';
+    function generateRandomNumber(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
         async function fetchMusicVideos() {
             let index = generateRandomNumber(0, window.musicTabID.length - 1);
-            const currentArtist = window.musicTabID[index];
+            currentArtist = window.musicTabID[index];
             let response = await fetch(`https://theaudiodb.com/api/v1/json/2/mvid.php?i=${window.musicTabID[index]}`);
             let musicVideos = await response.json();
             return musicVideos;
@@ -1665,8 +1666,8 @@
 																							</div>
                                                                                             <div class="bmt-daily-artist-overview"><a href="https://www.theaudiodb.com/artist/${currentArtist}" target="_blank">Artist Overview</a></div>
                                                                                             `
-                                                                                            
-                                                                                            ;
+
+                    ;
                 let refreshButton = document.querySelector(".bmt-daily-artist-refresh");
                 window.setupLazyLoad();
                 refreshButton.addEventListener("click", () => {
