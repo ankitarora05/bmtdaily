@@ -7,30 +7,95 @@
     "name": "BMT Daily",
     "short_name": "bmtdaily",
     "description": "Discover the pulse of the internet with our real-time updates, trending topics, and personalized feeds tailored to your interests.",
-    "icons":  [
-      {
-        "src": "manifest-icon-192.maskable.png",
-        "sizes": "192x192",
-        "type": "image/png",
-        "purpose": "any"
-      },
-      {
-        "src": "manifest-icon-192.maskable.png",
-        "sizes": "192x192",
-        "type": "image/png",
-        "purpose": "maskable"
-      },
-      {
-        "src": "manifest-icon-512.maskable.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "any"
-      },
-      {
-        "src": "manifest-icon-512.maskable.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "maskable"
-      }
+    "url": "https://bmtdaily.com",
+    "features": [
+        "Discover new music daily with over 200 artists videos",
+        "Discover upcoming, trending and greatest of all times movies and trailers",
+        "Discover real time weather updates near you",
+        "Discover daily memes for fun anytime",
+        "Discover Trending Videos near you",
+        "Discover latest in technology and news articles"
+    ],
+    "icons": [
+        {
+            "src": "manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "image1x1.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        },
+        {
+            "src": "image1x2.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        },
+        {
+            "src": "image1x3.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        },
+        {
+            "src": "image1x11.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        },
+        {
+            "src": "image1x11.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        }, {
+            "src": "image1x15.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        }, {
+            "src": "image1x18.png",
+            "type": "image/png",
+            "sizes": "780 × 1280",
+            "label": "BMT Daily"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "BMT Daily",
+            "description": "Discover new music daily",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "manifest-icon-512.maskable.png",
+                    "type": "image/png",
+                    "purpose": "any"
+                }
+            ]
+        }
     ]
 }
