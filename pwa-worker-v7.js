@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'static-cache-v15';
-const APP_CACHE_NAME = 'app-cache-v15';
+const STATIC_CACHE_NAME = 'static-cache-v16';
+const APP_CACHE_NAME = 'app-cache-v16';
 
 const CACHE_APP = [
     '/',
